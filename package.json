@@ -1,0 +1,12 @@
+{
+  "name": "hoancong-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Quản lý hồ sơ chất lượng và hoàn công dự án xây dựng",
+  "scripts": {
+    "start": "node serve.cjs",
+    "dev": "node serve.cjs",
+    "test": "node --check dist/app.js && node test.cjs"
+  },
+  "engines": { "node": ">=20" }
+}

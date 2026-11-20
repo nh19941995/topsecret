@@ -1,0 +1,10 @@
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+*.tar.gz
+du-an.json
+01_ChuanBi/
+02_ThiCong/
+03_HoanCong/
