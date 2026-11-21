@@ -21,7 +21,15 @@ Mã giao diện nằm trong `dist/` và có thể được phục vụ bởi d�
 5. **Thêm vật liệu** tạo ba nút chấp thuận, lấy mẫu, thí nghiệm. Nghiệm thu phụ thuộc kết quả của tất cả vật liệu.
 6. Sao chép toàn bộ thư mục dự án để chuyển máy; chọn lại thư mục trên máy mới. Xuất JSON chỉ xuất dữ liệu chỉ mục, không bao gồm tài liệu gốc.
 
-## Dữ liệu
+## Điều hướng cây hồ sơ
+
+- **Toàn màn hình** mở rộng vùng làm việc; **Thu về** hoặc Escape để trở lại.
+- **Vừa khung** thu phóng theo kích thước vùng xem; dùng **100%** để về kích thước gốc.
+- Bấm tiêu đề giai đoạn để thu gọn hoặc mở các hồ sơ bên trong. Thao tác chỉ thay đổi cách xem, không thay đổi trạng thái dự án.
+- Tìm hồ sơ rồi bấm kết quả để tự mở đúng giai đoạn và xem chi tiết.
+- Bấm tên hồ sơ trong **Điều kiện còn thiếu** để đến hồ sơ cần xử lý. Escape đóng bảng chi tiết trước khi thoát chế độ toàn màn hình.
+
+## Lưu trữ
 
 `du-an.json` chứa cấu trúc cây, thông tin hồ sơ, lịch sử, đường dẫn tương đối và SHA-256 tài liệu. File gốc được sao chép vào thư mục theo nhóm với tên duy nhất, không di chuyển/xóa bản gốc. File trùng nội dung bị từ chối. Dữ liệu ban đầu là minh họa, không phải hồ sơ pháp lý thực tế. Không lưu hồ sơ dự án trên máy chủ hosting.
 
