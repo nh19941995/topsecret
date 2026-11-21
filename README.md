@@ -12,7 +12,13 @@ Mở http://127.0.0.1:5173 bằng Chrome hoặc Edge desktop. Có thể chạy t
 
 Mã giao diện nằm trong `dist/` và có thể được phục vụ bởi dịch vụ hosting tĩnh qua HTTPS. Đẩy mã lên Git chỉ lưu mã nguồn; muốn có URL web cần cấu hình dịch vụ hosting riêng. Không đưa thư mục hồ sơ thật hoặc API key vào repo.
 
-## Bắt đầu
+## Thiết kế quy trình và template
+
+Xem [phân tích thành phần diagram và template chung](docs/DIAGRAM-TEMPLATE.md). Mẫu có thể tải và nhập nằm tại [common-workflow.json](dist/templates/common-workflow.json).
+
+Trong cây hồ sơ, chọn **Thiết kế quy trình** để kéo loại bước vào một giai đoạn, kéo thẻ để sắp xếp, hoặc bấm thẻ để đặt ngày và quan hệ trước/sau. **Cảnh báo** cho phép đặt số ngày nhắc trước và bật/tắt từng nhóm thông báo. **Template** cho phép xuất cấu trúc đang dùng và nhập mẫu vào dự án trống.
+
+## Bắt đầu với dự án
 
 1. Chọn **Kết nối thư mục**. Thư mục trống tạo dự án mới; thư mục có `du-an.json` mở dự án hiện có.
 2. Sửa tên/mã dự án từ nút tên dự án ở thanh bên.

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node serve.cjs",
     "dev": "node serve.cjs",
-    "test": "node --check dist/app.js && node test.cjs"
+    "test": "node --check dist/app.js && node --check dist/workflow-ui.js && node test.cjs && node workflow.test.cjs"
   },
   "engines": { "node": ">=20" }
 }

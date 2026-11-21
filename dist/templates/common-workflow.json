@@ -1,0 +1,172 @@
+{
+  "format": "hoancong-workflow-template",
+  "version": 1,
+  "name": "Mẫu chung hồ sơ xây dựng — Mẫu quy trình",
+  "alertSettings": {
+    "dueSoon": true,
+    "overdue": true,
+    "dateOrder": true,
+    "missingDate": true,
+    "blocked": true,
+    "leadDays": 7
+  },
+  "nodes": [
+    {
+      "id": "contractor",
+      "name": "Năng lực nhà thầu",
+      "type": "submission",
+      "stage": 0,
+      "folder": "01_ChuanBi/NangLuc",
+      "deps": [],
+      "required": true,
+      "order": 0,
+      "dateRules": []
+    },
+    {
+      "id": "personnel",
+      "name": "Nhân sự thi công",
+      "type": "submission",
+      "stage": 0,
+      "folder": "01_ChuanBi/NhanSu",
+      "deps": [],
+      "required": true,
+      "order": 1,
+      "dateRules": []
+    },
+    {
+      "id": "lab",
+      "name": "Phòng thí nghiệm",
+      "type": "approval",
+      "stage": 0,
+      "folder": "01_ChuanBi/PhongThiNghiem",
+      "deps": [],
+      "required": true,
+      "order": 2,
+      "dateRules": []
+    },
+    {
+      "id": "material",
+      "name": "Chấp thuận vật liệu [Tên vật liệu]",
+      "type": "approval",
+      "stage": 1,
+      "folder": "02_ThiCong/LuoiThep/ChapThuan",
+      "deps": [],
+      "required": true,
+      "order": 3,
+      "dateRules": []
+    },
+    {
+      "id": "sample",
+      "name": "Lấy mẫu [Tên vật liệu / lô]",
+      "type": "sampling",
+      "stage": 1,
+      "folder": "02_ThiCong/LuoiThep/LayMau",
+      "deps": [
+        "material",
+        "lab"
+      ],
+      "required": true,
+      "order": 4,
+      "dateRules": [
+        {
+          "sourceId": "material",
+          "sourceField": "date",
+          "targetField": "date",
+          "relation": "after",
+          "days": 0,
+          "blocking": true
+        },
+        {
+          "sourceId": "lab",
+          "sourceField": "date",
+          "targetField": "date",
+          "relation": "after",
+          "days": 0,
+          "blocking": true
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "name": "Thí nghiệm [Tên vật liệu / lô]",
+      "type": "testing",
+      "stage": 1,
+      "folder": "02_ThiCong/LuoiThep/ThiNghiem",
+      "deps": [
+        "sample",
+        "lab"
+      ],
+      "required": true,
+      "order": 5,
+      "dateRules": [
+        {
+          "sourceId": "sample",
+          "sourceField": "date",
+          "targetField": "date",
+          "relation": "after",
+          "days": 0,
+          "blocking": true
+        }
+      ]
+    },
+    {
+      "id": "acceptance",
+      "name": "Nghiệm thu [Công việc / hạng mục]",
+      "type": "acceptance",
+      "stage": 1,
+      "folder": "02_ThiCong/NghiemThu",
+      "deps": [
+        "test",
+        "contractor",
+        "personnel"
+      ],
+      "required": true,
+      "order": 6,
+      "dateRules": [
+        {
+          "sourceId": "test",
+          "sourceField": "date",
+          "targetField": "date",
+          "relation": "after",
+          "days": 0,
+          "blocking": true
+        }
+      ]
+    },
+    {
+      "id": "drawing",
+      "name": "Bản vẽ hoàn công [Hạng mục]",
+      "type": "drawing",
+      "stage": 2,
+      "folder": "03_HoanCong/BanVe",
+      "deps": [
+        "acceptance"
+      ],
+      "required": true,
+      "order": 7,
+      "dateRules": []
+    },
+    {
+      "id": "handover",
+      "name": "Hồ sơ bàn giao",
+      "type": "handover",
+      "stage": 2,
+      "folder": "03_HoanCong/BanGiao",
+      "deps": [
+        "drawing"
+      ],
+      "required": true,
+      "order": 8,
+      "dateRules": [
+        {
+          "sourceId": "drawing",
+          "sourceField": "date",
+          "targetField": "date",
+          "relation": "after",
+          "days": 0,
+          "blocking": true
+        }
+      ]
+    }
+  ]
+}

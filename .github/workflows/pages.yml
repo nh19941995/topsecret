@@ -27,6 +27,8 @@ jobs:
         run: |
           node --check dist/app.js
           node test.cjs
+          node --check dist/workflow-ui.js
+          node workflow.test.cjs
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload website

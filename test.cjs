@@ -1,6 +1,6 @@
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
 const source=fs.readFileSync('dist/app.js','utf8').split("$('#folderBtn').onclick=connect;")[0];
-const context=vm.createContext({document:{querySelector:()=>({}),querySelectorAll:()=>[]},localStorage:{getItem:()=>null},console,structuredClone});
+const context=vm.createContext({document:{querySelector:()=>({}),querySelectorAll:()=>[]},localStorage:{getItem:()=>null},console,structuredClone,Workflow:require('./dist/workflow.js')});
 vm.runInContext(source,context);
 function run(s){return vm.runInContext(s,context)}
 assert.equal(run('doneCount()'),3);
@@ -28,3 +28,7 @@ assert.ok(run("diagramLayout().positions.acceptance.y > diagramLayout().position
 assert.ok(run('970*diagramFitScale(1000,800,820) <= 968'));
 assert.ok(run('820*diagramFitScale(1000,800,820) <= 776'));
 console.log('Passed: dependency gating, stage regression, portable data, safe paths, isolated projects, stage collapse/expand, added-material layout, fit-to-view geometry.');
+run("state=fresh(false);node('material').status='done';node('lab').status='done';node('sample').status='done';node('material').date='2026-11-21';node('sample').date='2026-11-20';node('sample').dateRules=[{sourceId:'material',sourceField:'date',targetField:'date',relation:'after',days:0,blocking:true}]");
+assert.equal(run("complete(node('sample'))"),false);
+run("state.alertSettings={dateOrder:false};node('sample').date='2026-11-21'");assert.equal(run("complete(node('sample'))"),true);
+run("node('sample').date='2026-11-20'");assert.equal(run("complete(node('sample'))"),false);
